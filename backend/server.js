@@ -14,10 +14,11 @@ app.use(express.json());
 app.use('/users', usersRoutes);
 app.use('/products', productsRoutes);
 
-// Health check
-app.get('/', (req, res) => {
-  res.send('Backend API is working!');
+// Health check endpoint for Kubernetes probes
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
+
 
 // Start server
 app.listen(PORT, () => {
